@@ -1,0 +1,13 @@
+Studio 1 Answers
+Dawson Williams
+
+Difference between the function signatures of fprintf() and printf():
+printf()
+int printf(const char *format, ...);
+It takes only a format string (plus optional variadic arguments).
+
+fprintf() 
+int fprintf(FILE *stream, const char *format, ...);
+It takes an extra first argument: a FILE* stream (e.g., stdout, stderr, or a file you opened).
+
+Cannot continue since compiler gcc is not recognized.
