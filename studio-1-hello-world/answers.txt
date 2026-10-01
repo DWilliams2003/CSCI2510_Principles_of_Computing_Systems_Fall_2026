@@ -9,5 +9,8 @@ It takes only a format string (plus optional variadic arguments).
 fprintf() 
 int fprintf(FILE *stream, const char *format, ...);
 It takes an extra first argument: a FILE* stream (e.g., stdout, stderr, or a file you opened).
+prints "Hello, world!"
 
-Cannot continue since compiler gcc is not recognized.
+man man shows System Calls in Section 2
+
+Header needed for write(): #include <unistd.h>
