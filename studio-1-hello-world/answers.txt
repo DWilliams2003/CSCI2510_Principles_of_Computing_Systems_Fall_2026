@@ -14,3 +14,13 @@ prints "Hello, world!"
 man man shows System Calls in Section 2
 
 Header needed for write(): #include <unistd.h>
+
+#include <unistd.h>
+
+int main(int argc, char* argv[]){
+	write(STDOUT_FILENO, "Hello, world!\n", 14);
+	return 0;
+}
+
+Prints "Hello, world!" along with other random characters (or bytes)
+
