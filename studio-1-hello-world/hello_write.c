@@ -5,6 +5,6 @@
 #include <unistd.h>
 
 int main(int argc, char* argv[]){
-	write(STDOUT_FILENO, "Hello, world!\n", 14);
+	write(STDOUT_FILENO, "Hello, world!\n", 100);
 	return 0;
 }
