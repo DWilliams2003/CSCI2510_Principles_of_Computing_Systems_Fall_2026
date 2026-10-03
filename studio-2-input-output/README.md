@@ -30,11 +30,11 @@ source code to Canvas.
     few lines of text to the console (and hit enter after each line). As
     the answer to this exercise, describe what happens.
 
-    You can type CTRL-D on a blank line in order to quit `cat`. Typing
+    You can type CTRL + D on a blank line in order to quit `cat`. Typing
     CTRL-D sends a special \"end of file\" character to the terminal. It
     is common for terminal programs to act like they're reading a file,
-    so CTRL-D commonly terminates such programs. For example, if you type
-    CTRL-D at an empty terminal prompt, it's likely that your terminal will
+    so CTRL + D commonly terminates such programs. For example, if you type
+    CTRL + D at an empty terminal prompt, it's likely that your terminal will
     close itself!
 
 2.  The original purpose of `cat` is to print text files to the console.

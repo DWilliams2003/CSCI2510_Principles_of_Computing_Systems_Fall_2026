@@ -1,0 +1,22 @@
+1.) WHen cat is run, it waits for an input from standard input.
+Then every line we type is echoed back to the terminal, until we hit Ctrl + D.
+
+2.) The < operator redirects standard input so that cat reads from mars.txt instead of the keyboard. The contents of mars.txt are printed to the terminal.
+
+3.)The < operator feeds mars.txt into cat, and the > operator redirects standard output into new.txt.
+As a result, the contents of mars.txt are copied into new.txt. Opening new.txt shows the same text as mars.txt.
+
+4.) This command redirects standard output into new.txt.
+cat waits for keyboard input, and everything typed is written into the file instead of printed to the terminal.
+When you press CTRL‑D, cat exits. Opening new.txt shows exactly the lines you typed, and overwrites prvious text.
+
+5.) The >> operator appends output to the end of the file instead of overwriting it.
+
+6.) read() returns a value of type ssize_t. A return value of 0 indicates end-of-file. (A return value of -1 indicates an error.)
+
+7.) The program remains correct for any positive buffer size, even 1 byte.
+A smaller buffer means more calls to read() and write(), making the program slower.
+A larger buffer means fewer system calls and better performance, but uses more memory.
+
+8.) A small buffer size means more system calls (making it slower) but uses very little memory, while Large bufferSize makes fewer system calls (making it faster)
+but uses more memory.
