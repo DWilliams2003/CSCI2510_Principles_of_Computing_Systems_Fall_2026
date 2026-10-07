@@ -1,0 +1,59 @@
+1.) for (int i = 0; messagePtr[i] != '\0'; i++) {
+    printf("%c\n", messagePtr[i]);
+
+2.) The first value in the string, which is 'H'.
+
+3.)'H'.
+
+6.) printf("%c\n", *(messagePtr + 1));
+printf("%c\n", *(messagePtr + 2));
+printf("%c\n", *(messagePtr + 3));
+printf("%c\n", *(messagePtr + 4));
+
+7.) for (int i = 0; i < 11; i++) {
+        printf("%c\n", *(messagePtr + i));
+}
+
+8.) for (int i = 0; *(messagePtr + i) != '\0'; i++) {
+        printf("%c\n", *(messagePtr + i));
+}
+
+9.) 
+void printReverse( char* string ){
+    int length = 0;
+    while (string[length] != '\0') {
+        length++;
+    }
+
+    for (int i = length - 1; i >= 0; i--) {
+        printf("%c\n", string[i]);
+    }
+}
+
+10.)
+char* reverseString( char* input ){
+
+        //1. First count how many characters are in the input string
+        int number_of_chars_in_input = 0;
+        while ( *(input + number_of_chars_in_input) != '\0' ) {
+            number_of_chars_in_input++;
+        }
+        //This creates enough space to store the reversed string, plus one more byte
+        //for the null terminator
+        char* output = (char*)malloc( number_of_chars_in_input+1 );
+        if (output == NULL) {
+            return NULL;
+        }
+
+        //2. Copy the input string to the output string in reverse order. There are
+        //multiple ways to do this- consider using a counter, or consider using two
+        //pointers. 
+        for (int i = 0; i < number_of_chars_in_input; i++) {
+            output[i] = *(input + number_of_chars_in_input - 1 - i);
+        }
+        //REMEMBER THAT YOUR OUTPUT STRING MUST END WITH A NULL TERMINATOR. This is not
+        //provided for you automatically- you must put it there!
+
+            output[number_of_chars_in_input] = '\0';
+            return output; 
+        }
