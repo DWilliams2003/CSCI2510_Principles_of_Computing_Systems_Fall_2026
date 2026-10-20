@@ -1,0 +1,84 @@
+1.) 
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <file>\n", argv[0]);
+        return 1;
+    }
+
+    int input = open(argv[1], O_RDONLY);
+    if (input == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    char buffer[4096];
+    ssize_t bytes_read;
+    while ((bytes_read = read(input, buffer, sizeof(buffer))) > 0) {
+        ssize_t written = 0;
+        while (written < bytes_read) {
+            ssize_t result = write(STDOUT_FILENO, buffer + written,
+                                   (size_t)(bytes_read - written));
+            if (result == -1) {
+                perror("Error writing to standard output");
+                close(input);
+                return 1;
+            }
+            if (result == 0) {
+                fprintf(stderr, "Error writing to standard output: no bytes written\n");
+                close(input);
+                return 1;
+            }
+            written += result;
+        }
+    }
+
+    if (bytes_read == -1) {
+        perror("Error reading file");
+        close(input);
+        return 1;
+    }
+
+    if (close(input) == -1) {
+        perror("Error closing file");
+        return 1;
+    }
+
+    return 0;
+}
+
+Run: ./open ../studio-2-input-output/mars.txt
+
+2.) open() fails, the program prints an error message (Error opening file: ), and exits with a nonzero status.
+
+3.) 'chmod -rw perm.txt' didn't remove permissions since perm.txt s on the Windows-mounted /mnt/c filesystem, which may not support normal Linux permission changes.
+Ran: 
+cp /mnt/c/Users/dawso/csci2510/CSCI2510_Principles_of_Computing_Systems_Fall_2026/studio-4-error-checking/perm.txt ~/
+chmod a-rw ~/perm.txt
+ls -l ~/perm.txt
+
+Outcome: ---x--x--x 
+
+4.) -1 if an error occurred (in which case, errno is set appropriately)
+
+5.) if (input == -1)
+
+6.) perror("Error opening file");
+
+8.) open() returns -1, so the program prints an error with perror(), (Error opening file: No such file or directory)
+
+9.) open() fails with -1, Program prints error (Error opening file: Permission denied), then it exits without displaying file contents.
+
+10.) 
+-   man 2 open          Return Value on Error               Sets errno?
+    -   man 2 close                 -1                          Yes
+    -   man 2 read                  -1                          Yes
+    -   man 2 write                 -1                          Yes
+    -   man 3 printf        A negative value                    Yes
+
+11.)
+a.) It catches the failures early and reports useful details, making bugs easier to locate and debug.
+b.)It lets the progrsam handle failures safely instead of continuing with invalid data or crashing unpredictably.
