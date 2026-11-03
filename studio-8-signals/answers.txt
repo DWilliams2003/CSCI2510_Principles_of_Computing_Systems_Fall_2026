@@ -1,0 +1,56 @@
+1.)
+Sleeper's PID is: 2569
+Slept for 0 iterations!
+Slept for 1 iterations!
+Slept for 2 iterations!
+Slept for 3 iterations!
+
+2.)P1990 or 2? 'Terminal interrupt signal'
+
+3.) Since it doesn’t handle SIGINT, its default behavior applies and the process terminates. The PID will no longer be running.
+
+4.) I picked SIGTERM (signal 15, "Termination signal"). It terminates the
+sleeping process.
+
+Sleeper's PID is: 2718
+Slept for 0 iterations!
+Slept for 1 iterations!
+Slept for 2 iterations!
+Slept for 3 iterations!
+
+In the second terminal:
+$ kill -s 15 2718
+
+The kill command produces no output on success, and the sleeper terminates.
+
+5.) Pressing Ctrl-C sends SIGINT to the foreground process group, which
+includes both the caller and its sleeper child. Both processes terminate,
+so the caller does not print its success message.
+
+6.)
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void handle_sigint(int signum)
+{
+    (void) signum;
+    printf("Caller is ignoring SIGINT.\n");
+}
+
+/* In main(), before fork(): */
+if (signal(SIGINT, handle_sigint) == SIG_ERR) {
+    perror("Could not register SIGINT handler");
+    return EXIT_FAILURE;
+}
+
+7.) Output from running the caller and pressing Ctrl-C:
+
+Forking sleeper...
+Waiting for sleeper 2811...
+Caller is ignoring SIGINT.
+Parent finished waiting and returned successfully!
+
+8.) A web server can handle SIGTERM to stop accepting new requests and
+shut down gracefully, allowing active requests to finish and resources
+to be cleaned up before the process exits.

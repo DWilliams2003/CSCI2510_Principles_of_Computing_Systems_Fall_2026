@@ -1,0 +1,28 @@
+1.) Dawson Williams
+
+2.) Run-length compression works well when the data contains long runs of the same value, such as a mostly white area with large solid 
+areas, where many consecutive white pixels can be stored as one run.
+
+However, it works poorly on random or alternatiing data, such as the ABABABAB, because there are a few repeated values to combine.
+The run-length markers can make the compressed data as large or larger than the original.
+
+3.) My hypothesis is that the strong bias file will compress best due to lower numbers repeating more frequently, which based on the 
+information from question 2, should help with compression.
+
+Upon computing:
+Random: 0.6255
+Weak_Bias: 1.1744
+Strong_Bias: 2.4445
+
+So Strong_Bias is best.
+
+4.) 0m0.534s
+
+5,) 0m0.382
+When the length = 10, fewer runs are detected, fewer counter writes may occur, 
+more bytes are compared each time, and fewer iterations through the main loop
+
+With a compression length of 10, the program performs fewer iterations  because it processes data in larger chunks. However, each comparison 
+involves 10 bytes instead of one. Depending on the file contents, this may result in faster or slower execution.
+
+6.) N/A

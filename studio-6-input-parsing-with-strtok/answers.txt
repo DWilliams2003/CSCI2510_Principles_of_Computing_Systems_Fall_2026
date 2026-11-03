@@ -1,0 +1,41 @@
+Dawson Williams
+
+1.) Enter input: sample input
+
+2.) The initial strtok() call receives the string to parse as its first argument. For each subsequent token, call strtok() again with 
+NULL as the first argument; it continues parsing the same string from where it left off.
+
+3.) Use a space character (" ").
+
+4.) For input "This is an input string.", the output is "This"
+
+5.) 
+Enter input: This
+is
+an
+input
+string.
+
+6.) input_string[strcspn(input_string, "\n")] = '\0';
+
+
+8.) cmd = strtok(input_string, " ");
+
+9.)
+    my_argv[0] = cmd;
+    int i = 1;
+    char *res = strtok(NULL, " ");
+    while (res != NULL && i <= max_args) {
+        my_argv[i] = res;
+        i++;
+        res = strtok(NULL, " ");
+    }
+    if (res != NULL) {
+        fprintf(stderr, "Too many arguments (maximum %d).\n", max_args);
+        return EXIT_FAILURE;
+    }
+    my_argv[i] = NULL;
+
+10.)
+Enter input: echo Hello
+Hello

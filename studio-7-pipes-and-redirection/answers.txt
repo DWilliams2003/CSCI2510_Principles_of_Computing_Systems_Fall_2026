@@ -1,0 +1,48 @@
+1.)
+Program 1:
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Hello from Program 1!\n");
+    return 0;
+}
+
+Program 2:
+#include <stdio.h>
+
+int main(void)
+{
+    char input[1024];
+
+    while (1) {
+        if (fgets(input, sizeof(input), stdin) == NULL) {
+            break;
+        }
+
+        printf("Program 2 got: %s\n", input);
+    }
+
+    return 0;
+}
+
+2.) 
+Hello from Program 1!
+Program 2 got: test input
+
+3.) After pipe(fd) succeeds, fd[0] is the read end and fd[1] is the write end.
+
+4.) dup2(oldfd, newfd) closes the second argument (newfd) if it’s open and differs from oldfd, then makes it refer to the same open file description as oldfd. 
+If both arguments are the same, it closes nothing.
+
+5.)
+dup2(fd[1], STDOUT_FILENO); /* Program 1 writes to the pipe */
+dup2(fd[0], STDIN_FILENO);  /* Program 2 reads from the pipe */
+
+6.) Program 2 got: Hello from Program 1!
+7.) Program 2 got: Hello from Program 1!
+
+8.) 
+Programs are reusable and composable: A program that reads stdin or writes stdout can be connected to different programs with pipes or redirection, without changing its code.
+The I/O destination can change independently: The same program can use a terminal, file, pipe, or socket. The operating system handles the connection, keeping programs decoupled 
+from the details.

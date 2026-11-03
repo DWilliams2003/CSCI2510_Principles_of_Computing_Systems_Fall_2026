@@ -1,0 +1,49 @@
+1.)
+    Process ID: 1277
+    Process ID: 1278
+    Process ID: 1266
+
+2.) Prints two Process ID values simutaniously.
+Process ID: 1974
+Process ID: 1975
+
+3.) On success, fork() returns 0 in the child and the child’s PID in the parent. If it fails, it returns -1 in the parent, 
+creates no child, and sets errno.
+
+4.) 
+Parent process ID: 2011
+Child process ID: 2012
+
+5.) 
+Parent Process ID: 2032
+Child Process ID: 2033
+real 0m3.000s
+The parent prints immediately while the child waits three seconds before printing. The parent may finish before the child.
+
+6.)
+Child process ID: 2044
+Parent process ID: 2043
+
+real    0m3.015s
+user    0m0.001s
+sys     0m0.001s
+
+Sleeps for 3 seconds before calling then printing, meaning the parent now waits for the child to finish, and the child's line appears first.
+
+7.) 
+-rw-r--r-- 1 dawso 197609 20433 Oct 15 13:03 studio-2-input-output.zip
+drwxr-xr-x 1 dawso 197609     0 Oct  7 18:22 studio-3-pointers/
+-rw-r--r-- 1 dawso 197609  8865 Oct 15 13:03 studio-3-pointers.zip
+drwxr-xr-x 1 dawso 197609     0 Oct  9 21:56 studio-4-error-checking/
+drwxr-xr-x 1 dawso 197609     0 Oct 20 11:58 studio-5-fork-exec/
+drwxr-xr-x 1 dawso 197609     0 Oct 27 11:34 studio-6-input-parsing-with-strtok/
+drwxr-xr-x 1 dawso 197609     0 Oct 27 11:34 studio-7-pipes-and-redirection/
+drwxr-xr-x 1 dawso 197609     0 Oct 27 11:34 studio-8-signals/
+
+8.)
+total 32
+-rwxrwxrwx 1 dawson_a_williams dawson_a_williams  6079 Oct 20 11:24 README.md
+-rwxrwxrwx 1 dawson_a_williams dawson_a_williams  1412 Oct 27 21:57 answers.txt
+-rwxrwxrwx 1 dawson_a_williams dawson_a_williams 16008 Oct 20 11:58 fork
+-rwxrwxrwx 1 dawson_a_williams dawson_a_williams   697 Oct 27 21:57 fork.c
+Parent process ID: 2178
