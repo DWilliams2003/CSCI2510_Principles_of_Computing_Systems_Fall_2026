@@ -1,0 +1,8 @@
+1. Known bugs or deviations:
+   - Input lines are limited to 4095 characters. Each pipeline can contain
+     at most 128 commands, and each command can contain at most 64 arguments.
+     Exceeding these limits prints an error instead of crashing.
+   - The shell uses the fixed prompt "slush> "; the optional current-directory
+     prompt enrichment was not attempted.
+   - The built-in cd command requires exactly one directory argument.
+
