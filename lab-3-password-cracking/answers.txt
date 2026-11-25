@@ -1,0 +1,93 @@
+1.) Dawson Williams
+
+2.) pass
+
+3.) ferry
+
+4.) 1m20.546s
+
+5.) Based on real time:
+2 Threads: 0m32.464s
+4 Threads:  0m14.443s
+8 Threads: 0m14.816s
+13 Threads: 0m14.067s
+26 Threads: 0m14.770s
+
+6.) The program checks passwords of lengths 1 through 5, so it computes 12,356,630 hashes. 
+So, hash rate (hashes/second) = 12,356,630 / real time in seconds
+2 Threads: 380,626
+4 Threads: 855,545
+8 Threads: 834,006
+13 Threads: 878,413
+26 Threads: 836,603
+
+7.) Using the 1-thread time of 80.546 seconds as the baseline:
+
+2 threads: 32.464 seconds, about 2.5× faster—a larger improvement than exactly 2×.
+8 threads: 14.816 seconds, about 5.4× faster, not 8×.
+The work is divided among threads, but adding threads does not guarantee a proportional speedup. Threads compete for CPU resources, 
+and your implementation also uses a mutex to check whether a password has been found. That synchronization adds overhead, especially 
+as the thread count increases. The timings suggest performance levels off around four threads on our system.
+
+8.) The maximum recorded hash rate was approximately 878,413 hashes per second, with 13 threads.
+
+9.) Your program searches passwords of every length from 1 up to the keysize, 
+so the total for keysize (n) is (26^1 + 26^2 + \dots + 26^n).
+1: 26
+2: 702
+3: 18,278
+4: 475,254
+5: 12,356,630
+6: 321,272,406
+7: 8,353,082,582
+8: 217,180,147,158
+
+10.) Using the maximum rate of 878,413 hashes/second, estimated exhaustive-search times are:
+1: 0.00003 seconds
+2: 0.0008 seconds
+3: 0.021 seconds
+4: 0.54 seconds
+5: 14.1 seconds
+6: 6.1 minutes
+7: 2 hours 38 minutes
+8: 2 days 20 hours 41 minutes
+
+Each additional character multiplies the number of possible passwords by 26, so search time increases rapidly with password length. 
+These are estimates assuming the program sustains the measured hash rate throughout the search.
+
+11.) My program searches shorter lengths too, so for a maximum keysize of 6, use (a^1 + a^2 + \dots + a^6), 
+divided by maximum rate of 878,413 hashes/second:
+8 days 14 hours 49 minutes
+
+12.) One potential bug is that the crypt_data structure passed to crypt_r() is not initialized; this may cause unreliable results on 
+some systems. It should be zero-initialized before use. Also, requesting an excessively large number of threads may cause thread 
+creation to fail.
+
+13.) 
+-   **2% Extra Credit**: Crack the following five-letter password
+    hashes:
+
+* `abA.g8pU2Iffo` = salts
+* `cdfnIXMyMCpPg` = salts
+* `efgC/gw8PDKhs` = salts
+* `ghLneTdBMxJP.` = salts
+* `ijSsXTgIC7QRU` = donot
+* `klr7dT7cAODsk` = skipp
+* `mn4iWfK0m76t6` = anyyy
+* `opjPsgpXaahxM` = salts
+* `qr6ncfvfqecME`= salts
+
+-   **2% Extra Credit**: Explain why password salts are useful, even if
+    they\'re not secret.
+    A salt is a random value stored alongside the password hash. Even though it is public, a unique salt makes identical passwords 
+    produce different hashes and prevents attackers from reusing precomputed hash tables. It also means each password hash must be 
+    attacked separately. Salts don’t make weak passwords strong, but they make large-scale cracking less efficient.
+
+-   **2% Extra Credit**: Add a fourth paramter to your program which, if
+    present, causes your program to search all uppercase and lowercase
+    characters, plus numbers and symbols. *Hint: look at an ASCII table.
+    What range of decimal encodings includes all of the above?*
+        What range of decimal encodings includes all of the above?*
+    Added optional --ascii mode to crack.c
+    Use ASCII decimal values 33 through 126 inclusive: ! to ~. That covers uppercase and lowercase letters, digits, and printable symbols,
+    excluding the space character (32).

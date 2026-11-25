@@ -27,7 +27,7 @@ on this assignment.
 
 ### Usage
 
-`crack <threads> <keysize> <target>`
+`crack <threads> <keysize> <target> [--ascii]`
 
 ### Description
 
@@ -35,6 +35,10 @@ on this assignment.
 hash. It does this by trying all possible lowercase alphabetic (a-z)
 passwords of length up to `keysize`. The program should run with
 `threads` concurrent threads for speed.
+
+The optional `--ascii` argument searches printable non-space ASCII
+characters (decimal values 33 through 126) instead of only lowercase
+letters.
 
 Linux/Unix user passwords are never stored on the system. Instead, a
 function called a hash is applied to the password. Then, the hashed
@@ -154,4 +158,4 @@ length, and then have main call it in a loop from 1 to `keysize`.
 -   **2% Extra Credit**: Add a fourth paramter to your program which, if
     present, causes your program to search all uppercase and lowercase
     characters, plus numbers and symbols. *Hint: look at an ASCII table.
-    What range of decimal encodings includes all of the above?*
+
